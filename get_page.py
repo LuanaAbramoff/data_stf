@@ -9,7 +9,8 @@ def lambda_handler(event, context):
     ua = UserAgent()
     session = requests.Session()
     url = 'https://portal.stf.jus.br/processos/detalhe.asp?incidente=2226954'
-    page_detalhes = session.get(url, headers={"User-Agent": str(ua.chrome)})   
+    page_detalhes = session.get(url, headers={"User-Agent": str(ua.chrome)})
+    page_detalhes.encoding = 'iso-8859-1'
     
     # Parse the HTML using Beautiful Soup
     soup = BeautifulSoup(page_detalhes.content, 'html.parser')
